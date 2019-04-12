@@ -5,26 +5,37 @@ import React, { Component } from "react"
 class CarlistComponent extends Component {
 
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            cakes: ["Cake with ham","Cheesecake","Healthy Cake","Wedding Cake"]
+            isActive: false,
+            cakes: ["1", "2", "3", "4"],
         };
+        this.toggleClass = this.toggleClass.bind(this);
     }
 
-
+    toggleClass = () => {
+        const currentState = this.state.isActive;
+        this.setState({isActive: !currentState});
+    }
 
     render() {
         return (
             <ul className="list-group" >
-                {this.state.cakes.map(function (value) {
+                {
+
+                    this.state.cakes.map(function (value) {
                         return(
-                            <li className="list-group-item" onClick={}>{ value }</li>
+                            <li onClick={ this.toggleClass } className={ this.state.isActive ? 'list-group-item active' : 'list-group-item' } >{ value }</li>
                         );
-                })}
+                    })
+                }
             </ul>
         )
     }
+
+
 }
+
 
 export default CarlistComponent;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import cake1 from './cake1.jpg';
 import TestComponent from "./component/test.component";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import CarlistComponent from "./component/carlist.component";
 
 
@@ -15,7 +16,7 @@ class App extends Component {
         <div className="container container_plus">
           <div className="row">
             <div className="col-sm">
-              <CarlistComponent></CarlistComponent>
+              <CarlistComponent/>
             </div>
             <div className="col-sm">
               <img className="image_box mt-5" src={cake1} alt="Cake"/>
