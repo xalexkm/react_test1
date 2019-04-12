@@ -20,13 +20,13 @@ class CarlistComponent extends Component {
     }
 
     render() {
+        let me = this;
         return (
             <ul className="list-group" >
                 {
-
                     this.state.cakes.map(function (value) {
                         return(
-                            <li onClick={ this.toggleClass } className={ this.state.isActive ? 'list-group-item active' : 'list-group-item' } >{ value }</li>
+                            <li onClick={ me.toggleClass } className={ this.state.isActive ? 'list-group-item active' : 'list-group-item' } >{ value }</li>
                         );
                     })
                 }
