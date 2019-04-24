@@ -44,8 +44,6 @@ class App extends Component {
     this.setState({selectedId: selectedOrder})
   }
 
-
-
   render() {
 
 
@@ -56,7 +54,7 @@ class App extends Component {
         <div className="container container_plus">
           <div className="row">
             <div className="col-sm">
-              <CarlistComponent items={ data }/>
+              <CarlistComponent items={ data } triggerOrderUpdate={ this.updatedOrder }/>
             </div>
             <div className="col-sm">
               <Image source={ data } id={this.state.selectedId} triggerOrderUpdate={ this.updatedOrder }/>

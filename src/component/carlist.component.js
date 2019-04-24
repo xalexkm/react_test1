@@ -4,25 +4,21 @@ class CarlistComponent extends Component {
 
     constructor(props) {
         super(props);
+        this.selectCar = this.selectCar.bind(this);
         this.state = {
             selectedId: 0,
         }
     }
 
-    selectCar = (id, item) => {
+    selectCar = (item) => {
         let me = this;
-        if (this.state.selectedId !== id) {
+        if (me.state.selectedId !== item.id) {
             me.setState({selectedId : item.id})
         }
-
-    }
-
-    handleEvent = () => {
         this.props.triggerOrderUpdate(this.state.selectedId);
     }
 
     render() {
-        let selectCar = this.selectCar.bind(this);
         return (
 
             <ul className="list-group" >
@@ -34,10 +30,7 @@ class CarlistComponent extends Component {
                             <li
                                 key={item.id}
                                 className={(this.state.selectedId === item.id) ? 'list-group-item active' : 'list-group-item'}
-                                onClick={function (e) {
-                                    selectCar(item.id, item);
-                                    me.handleEvent()
-                                }}>
+                                onClick={() => me.selectCar(item)}>
 
                                 {item.make} - {item.model}
 
