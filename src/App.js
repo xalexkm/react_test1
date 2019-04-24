@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 import CarlistComponent from "./component/carlist.component";
 import Image from "./component/image.component";
 
@@ -26,7 +26,6 @@ const data = {
       "id": 2,
       "image": "./img/porsche_cayman.jpg",
     },
-
   ]
 };
 
