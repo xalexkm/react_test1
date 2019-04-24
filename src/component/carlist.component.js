@@ -1,34 +1,50 @@
-import React, { Component } from "react"
-
-
+import React, { Component } from "react";
 
 class CarlistComponent extends Component {
-
 
     constructor(props) {
         super(props);
         this.state = {
-            isActive: false,
-            cakes: ["1", "2", "3", "4"],
-        };
-        this.toggleClass = this.toggleClass.bind(this);
+            selectedId: 0,
+        }
     }
 
-    toggleClass = () => {
-        const currentState = this.state.isActive;
-        this.setState({isActive: !currentState});
+    selectCar = (id, item) => {
+        let me = this;
+        if (this.state.selectedId !== id) {
+            me.setState({selectedId : item.id})
+        }
+
+    }
+
+    handleEvent = () => {
+        this.props.triggerOrderUpdate(this.state.selectedId);
     }
 
     render() {
-        let me = this;
+        let selectCar = this.selectCar.bind(this);
         return (
+
             <ul className="list-group" >
                 {
-                    this.state.cakes.map(function (value) {
-                        return(
-                            <li onClick={ me.toggleClass } className={ this.state.isActive ? 'list-group-item active' : 'list-group-item' } >{ value }</li>
-                        );
-                    })
+                    this.props.items.cars.map(
+                        item => {
+                            let me = this;
+                            return(
+                            <li
+                                key={item.id}
+                                className={(this.state.selectedId === item.id) ? 'list-group-item active' : 'list-group-item'}
+                                onClick={function (e) {
+                                    selectCar(item.id, item);
+                                    me.handleEvent()
+                                }}>
+
+                                {item.make} - {item.model}
+
+                            </li>
+                            )
+                        }
+                    )
                 }
             </ul>
         )
