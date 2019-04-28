@@ -6,13 +6,12 @@ import Image from "./component/image.component";
 
 const data = {
 
-  "cars": [
+  'cars': [
     {
       "make": "Audi",
       "model": "R8",
       "id": 0,
       "image": "./img/audi_r8.jpg",
-
     },
     {
       "make": "BMW",
@@ -35,14 +34,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedId: "",
+      selectedId: 0,
     }
   }
 
 
   updatedOrder = (selectedOrder) => {
-    this.setState({selectedId: selectedOrder})
-  }
+
+        this.setState({ selectedId: selectedOrder});
+        console.log("In parent" + this.state.selectedId);
+  };
 
   render() {
 
@@ -54,10 +55,10 @@ class App extends Component {
         <div className="container container_plus">
           <div className="row">
             <div className="col-sm">
-              <CarlistComponent items={ data } triggerOrderUpdate={ this.updatedOrder }/>
+              <CarlistComponent items={ data } triggerOrderUpdate={ this.updatedOrder } />
             </div>
             <div className="col-sm">
-              <Image source={ data } id={this.state.selectedId} triggerOrderUpdate={ this.updatedOrder }/>
+              <Image source={ data } id={this.state.selectedId}/>
             </div>
             <div className="col-sm">
               One of three columns

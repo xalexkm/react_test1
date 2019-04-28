@@ -12,10 +12,13 @@ class CarlistComponent extends Component {
 
     selectCar = (item) => {
         let me = this;
-        if (me.state.selectedId !== item.id) {
-            me.setState({selectedId : item.id})
+        if (me.state.selectedId !== item) {
+            me.setState({selectedId : item});
         }
-        this.props.triggerOrderUpdate(this.state.selectedId);
+        // sends id of the selected item
+        me.props.triggerOrderUpdate(this.state.selectedId);
+        console.log("In child" + me.state.selectedId);
+
     }
 
     render() {
@@ -30,7 +33,7 @@ class CarlistComponent extends Component {
                             <li
                                 key={item.id}
                                 className={(this.state.selectedId === item.id) ? 'list-group-item active' : 'list-group-item'}
-                                onClick={() => me.selectCar(item)}>
+                                onClick={() => me.selectCar(item.id)}>
 
                                 {item.make} - {item.model}
 
