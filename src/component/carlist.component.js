@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class CarlistComponent extends Component {
+export class CarlistComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -10,14 +10,15 @@ class CarlistComponent extends Component {
         }
     }
 
-    selectCar = (item) => {
+    selectCar = (id) => {
         let me = this;
-        if (me.state.selectedId !== item) {
-            me.setState({selectedId : item});
+        if (me.state.selectedId !== id) {
+            me.setState({selectedId : id});
+            // sends id of the selected item
+            me.props.triggerOrderUpdate(id);
         }
-        // sends id of the selected item
-        me.props.triggerOrderUpdate(this.state.selectedId);
-        console.log("In child" + me.state.selectedId);
+
+
 
     }
 
@@ -26,7 +27,7 @@ class CarlistComponent extends Component {
 
             <ul className="list-group" >
                 {
-                    this.props.items.cars.map(
+                    this.props.items.map(
                         item => {
                             let me = this;
                             return(
@@ -49,5 +50,3 @@ class CarlistComponent extends Component {
 
 }
 
-
-export default CarlistComponent;

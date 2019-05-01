@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap';
-import CarlistComponent from "./component/carlist.component";
+import {CarlistComponent} from "./component/carlist.component";
 import Image from "./component/image.component";
-
-const data = {
-
-  'cars': [
+import audi from "./img/audi_r8.jpg";
+import bmw_m3 from "./img/bmw_m3.jpeg";
+import mercedes from "./img/porsche_cayman.jpg";
+import {SearchBar} from "./component/search.component";
+const data =
+  [
     {
       "make": "Audi",
       "model": "R8",
       "id": 0,
-      "image": "./img/audi_r8.jpg",
+      "image": audi,
     },
     {
       "make": "BMW",
       "model": "M3",
       "id": 1,
-      "image": "./img/bentley.jpg",
+      "image": bmw_m3,
     },
     {
       "make": "Mercedes-Benz",
       "model": "C63",
       "id": 2,
-      "image": "./img/porsche_cayman.jpg",
+      "image": mercedes,
     },
-  ]
-};
+  ];
+
 
 
 
@@ -35,6 +37,7 @@ class App extends Component {
     super(props);
     this.state = {
       selectedId: 0,
+      filteredCars: data,
     }
   }
 
@@ -42,7 +45,12 @@ class App extends Component {
   updatedOrder = (selectedOrder) => {
 
         this.setState({ selectedId: selectedOrder});
-        console.log("In parent" + this.state.selectedId);
+  };
+
+  updatedSearch = (filteredCarsIds) => {
+
+        this.setState({filteredCars: filteredCarsIds});
+        console.log(this.state.filteredCars);
   };
 
   render() {
@@ -55,7 +63,8 @@ class App extends Component {
         <div className="container container_plus">
           <div className="row">
             <div className="col-sm">
-              <CarlistComponent items={ data } triggerOrderUpdate={ this.updatedOrder } />
+              <SearchBar data={ data } triggerSearchUpdate={ this.updatedSearch }/>
+              <CarlistComponent items={ this.state.filteredCars } triggerOrderUpdate={ this.updatedOrder } />
             </div>
             <div className="col-sm">
               <Image source={ data } id={this.state.selectedId}/>

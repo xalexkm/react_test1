@@ -1,7 +1,8 @@
 import React from "react";
 
 const Image = (props) => (
-    <p>  </p>
+
+    <img src={ props.source[props.id].image } alt={ props.source[props.id].model } className="image_con" />
 )
 
 

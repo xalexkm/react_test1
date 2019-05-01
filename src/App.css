@@ -23,7 +23,9 @@
   margin-top: -2px;
 }
 
-
+.image_con {
+  width: 300px;
+}
 
 .square:focus {
   outline: none;
