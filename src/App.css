@@ -2,9 +2,18 @@
   text-align: center;
 }
 .container_plus{
-  width: 600px;
+  width: 1000px;
   height: 200px;
 }
+
+.web_header {
+  width: 1000px;
+  height: 50px;
+  background-color: rgba(160,154,160,0.31);
+  position: fixed;
+  top: 0;
+}
+
 
 .image_box {
   width: 200px;
@@ -12,6 +21,10 @@
 
 .receipt {
 
+}
+
+.car_app {
+  margin-top: 100px;
 }
 
 .square {

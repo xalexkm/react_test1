@@ -37,7 +37,7 @@ class App extends Component {
     super(props);
     this.state = {
       selectedId: 0,
-      filteredCars: data,
+      filteredCars: [],
     }
   }
 
@@ -59,17 +59,19 @@ class App extends Component {
 
     return (
       <div className="App">
-        <p>How to make a cake</p>
-        <div className="container container_plus">
-          <div className="row">
-            <div className="col-sm">
+          <div className="container container_plus">
+              <div className="web_header">
+
+              </div>
+          <div className="row car_app">
+            <div className="col-sm-3">
               <SearchBar data={ data } triggerSearchUpdate={ this.updatedSearch }/>
-              <CarlistComponent items={ this.state.filteredCars } triggerOrderUpdate={ this.updatedOrder } />
+              <CarlistComponent items={ data } filteredCars={ this.state.filteredCars } triggerOrderUpdate={ this.updatedOrder } />
             </div>
-            <div className="col-sm">
+            <div className="col-sm-3">
               <Image source={ data } id={this.state.selectedId}/>
             </div>
-            <div className="col-sm">
+            <div className="col-sm-6">
               One of three columns
             </div>
           </div>

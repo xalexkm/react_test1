@@ -14,20 +14,22 @@ export class SearchBar extends Component {
 
 
     handleSearch = (event) => {
+        let beforeFilteredCars = [];
+        let currentInput = event.target.value;
 
-        this.setState({searchValue: event.target.value});
-        let beforeFilteredCars = this.props.data;
         this.props.data.map(
             car => {
                 let me = this;
-                let currentInput = me.state.searchValue;
-                if (currentInput !== "" && (car.model.toLowerCase().indexOf( currentInput.toLowerCase()) === -1 || car.make.toLowerCase().indexOf( currentInput.toLowerCase()) === -1)) {
-                    beforeFilteredCars.splice(car.id, 1);
+                
+                console.log(currentInput);
+                if (car.model.toLowerCase().indexOf( currentInput.toLowerCase()) !== -1) {
+                    beforeFilteredCars.push(car.id);
                 }
                 return undefined;
             }
 
         );
+        this.setState({searchValue: event.target.value});
         this.props.triggerSearchUpdate(beforeFilteredCars);
 }
 
@@ -36,7 +38,7 @@ export class SearchBar extends Component {
         return(
 
             <form>
-                <input placeholder="Search for a car..." name="search_bar" value={ this.state.searchValue } onChange={ this.handleSearch }/>
+                <input placeholder="Search for a car..." name="search_bar" value={ this.state.searchValue } onChange={ this.handleSearch }  className="mb-2"/>
             </form>
 
         );
