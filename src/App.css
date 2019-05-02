@@ -12,8 +12,15 @@
   background-color: rgba(160,154,160,0.31);
   position: fixed;
   top: 0;
-}
 
+
+}
+.web_header h2 {
+  float: left;
+  margin-left: 20px;
+  color: #fff;
+  line-height: 50px;
+}
 
 .image_box {
   width: 200px;

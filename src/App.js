@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap';
@@ -37,7 +39,7 @@ class App extends Component {
     super(props);
     this.state = {
       selectedId: 0,
-      filteredCars: [],
+      searchValue: "",
     }
   }
 
@@ -47,11 +49,12 @@ class App extends Component {
         this.setState({ selectedId: selectedOrder});
   };
 
-  updatedSearch = (filteredCarsIds) => {
+  updatedSearch = (inputValue) => {
 
-        this.setState({filteredCars: filteredCarsIds});
-        console.log(this.state.filteredCars);
+        this.setState({searchValue: inputValue});
+        console.log(this.state.searchValue);
   };
+
 
   render() {
 
@@ -61,12 +64,12 @@ class App extends Component {
       <div className="App">
           <div className="container container_plus">
               <div className="web_header">
-
+                    <h2>Cars App</h2>
               </div>
           <div className="row car_app">
             <div className="col-sm-3">
               <SearchBar data={ data } triggerSearchUpdate={ this.updatedSearch }/>
-              <CarlistComponent items={ data } filteredCars={ this.state.filteredCars } triggerOrderUpdate={ this.updatedOrder } />
+              <CarlistComponent items={ data } searchValue={ this.state.searchValue } triggerOrderUpdate={ this.updatedOrder } />
             </div>
             <div className="col-sm-3">
               <Image source={ data } id={this.state.selectedId}/>

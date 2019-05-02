@@ -7,7 +7,9 @@ export class CarlistComponent extends Component {
         this.selectCar = this.selectCar.bind(this);
         this.state = {
             selectedId: 0,
+            filteredCars: [],
         }
+
     }
 
     selectCar = (id) => {
@@ -21,6 +23,25 @@ export class CarlistComponent extends Component {
 
 
     }
+
+
+
+    filterCars = () => {
+        let searchValue = this.props.searchValue;
+        let source = this.props.source;
+        source.map( car => {
+            if ( searchValue !== "" && car.make.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1 ) {
+                source.splice(car.id, 1);
+
+            }
+            return null;
+        }
+        );
+        this.setState({filteredCars: source});
+        console.log(this.state.filteredCars);
+
+    }
+
 
     render() {
         return (
