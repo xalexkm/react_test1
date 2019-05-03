@@ -8,6 +8,7 @@ export class CarlistComponent extends Component {
         this.state = {
             selectedId: 0,
             filteredCars: [],
+            searchValue: "",
         }
 
     }
@@ -27,28 +28,31 @@ export class CarlistComponent extends Component {
 
 
     filterCars = () => {
-        let searchValue = this.props.searchValue;
-        let source = this.props.source;
-        source.map( car => {
-            if ( searchValue !== "" && car.make.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1 ) {
-                source.splice(car.id, 1);
+        if (this.state.searchValue !== "") {
+            let searchValue = this.props.searchValue;
+            let source = this.props.source;
+            source.map(car => {
+                    if (car.make.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) {
+                        source.splice(car.id, 1);
 
-            }
-            return null;
+                    }
+                    return null;
+                }
+            );
+            this.setState({filteredCars: source});
+            console.log(this.state.filteredCars);
         }
-        );
-        this.setState({filteredCars: source});
-        console.log(this.state.filteredCars);
-
     }
 
 
     render() {
+        this.filterCars();
         return (
 
             <ul className="list-group" >
                 {
-                    this.props.items.map(
+
+                    this.state.filteredCars.map(
                         item => {
                             let me = this;
                             return(

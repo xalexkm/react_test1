@@ -40,7 +40,9 @@ class App extends Component {
     this.state = {
       selectedId: 0,
       searchValue: "",
-    }
+
+    };
+
   }
 
 
@@ -53,6 +55,7 @@ class App extends Component {
 
         this.setState({searchValue: inputValue});
         console.log(this.state.searchValue);
+
   };
 
 
@@ -62,14 +65,26 @@ class App extends Component {
 
     return (
       <div className="App">
-          <div className="container container_plus">
-              <div className="web_header">
-                    <h2>Cars App</h2>
+          <div className="web_header">
+              <div className="item"> ABOUT
+                  <div className="item_underline"> </div>
               </div>
+              <div className="item"> GALLERY
+                  <div className="item_underline"> </div>
+              </div>
+              <div className="item"> RANDOM
+                  <div className="item_underline"> </div>
+              </div>
+              <div className="item"> SINISTER
+                  <div className="item_underline"> </div>
+              </div>
+          </div>
+          <div className="container container_plus">
+
           <div className="row car_app">
             <div className="col-sm-3">
-              <SearchBar data={ data } triggerSearchUpdate={ this.updatedSearch }/>
-              <CarlistComponent items={ data } searchValue={ this.state.searchValue } triggerOrderUpdate={ this.updatedOrder } />
+              <SearchBar data={ data } triggerSearchUpdate={ this.updatedSearch } />
+              <CarlistComponent items={ data } source={ data } searchValue={ this.state.searchValue } triggerOrderUpdate={ this.updatedOrder }/>
             </div>
             <div className="col-sm-3">
               <Image source={ data } id={this.state.selectedId}/>
