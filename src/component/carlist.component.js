@@ -27,18 +27,20 @@ export class CarlistComponent extends Component {
 
 
 
-    filterCars = () => {
+    filterCars = (event) => {
+        this.setState({searchValue: event.target.value});
+        console.log(this.state.searchValue);
         if (this.state.searchValue !== "") {
-            let searchValue = this.props.searchValue;
+            let searchValue = this.state.searchValue;
             let source = this.props.source;
-            source.map(car => {
-                    if (car.make.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) {
-                        source.splice(car.id, 1);
 
-                    }
-                    return null;
+
+            for (let i = 0; i < source.length; i++) {
+                if (source[i].make.toLowerCase().indexOf( searchValue.toLowerCase() ) === -1) {
+                    console.log(source[i].id);
+                    source.splice(source[i].id, 1);
                 }
-            );
+            }
             this.setState({filteredCars: source});
             console.log(this.state.filteredCars);
         }
@@ -46,8 +48,12 @@ export class CarlistComponent extends Component {
 
 
     render() {
-        this.filterCars();
+
         return (
+            <React.Fragment>
+            <form>
+                <input placeholder="Search for a car..." name="search_bar" value={ this.state.searchValue } onChange={ this.filterCars }  className="mb-2"/>
+            </form>
 
             <ul className="list-group" >
                 {
@@ -69,6 +75,7 @@ export class CarlistComponent extends Component {
                     )
                 }
             </ul>
+            </React.Fragment>
         )
     }
 

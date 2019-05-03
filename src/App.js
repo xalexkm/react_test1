@@ -8,7 +8,6 @@ import Image from "./component/image.component";
 import audi from "./img/audi_r8.jpg";
 import bmw_m3 from "./img/bmw_m3.jpeg";
 import mercedes from "./img/porsche_cayman.jpg";
-import {SearchBar} from "./component/search.component";
 const data =
   [
     {
@@ -83,7 +82,6 @@ class App extends Component {
 
           <div className="row car_app">
             <div className="col-sm-3">
-              <SearchBar data={ data } triggerSearchUpdate={ this.updatedSearch } />
               <CarlistComponent items={ data } source={ data } searchValue={ this.state.searchValue } triggerOrderUpdate={ this.updatedOrder }/>
             </div>
             <div className="col-sm-3">
