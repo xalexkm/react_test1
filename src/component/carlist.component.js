@@ -28,22 +28,44 @@ export class CarlistComponent extends Component {
 
 
     filterCars = (event) => {
-        this.setState({searchValue: event.target.value});
-        console.log(this.state.searchValue);
-        if (this.state.searchValue !== "") {
-            let searchValue = this.state.searchValue;
-            let source = this.props.source;
-
-
-            for (let i = 0; i < source.length; i++) {
-                if (source[i].make.toLowerCase().indexOf( searchValue.toLowerCase() ) === -1) {
-                    console.log(source[i].id);
-                    source.splice(source[i].id, 1);
+        this.setState({searchValue: event.target.value}, () => {
+            if (this.state.searchValue !== "") {
+                let searchValue = this.state.searchValue;
+                let source = this.props.source.slice(0);
+    
+                for (let i = 0; i < source.length; i++) {
+                    if (source[i].make.toLowerCase().indexOf( searchValue.toLowerCase() ) === -1) {
+                        source.splice(i, 1);
+                    }
                 }
+                console.log(source);
+                this.setState({filteredCars: source});
+            } else {
+                this.setState({filteredCars: []});
             }
-            this.setState({filteredCars: source});
-            console.log(this.state.filteredCars);
+        });
+    }
+
+    filterCarsRefactored = (event) => {
+        let searchValue = event.target.value;
+        let foundArray = [];
+
+        if (searchValue === '') {
+            source = [];
+        } else {
+            let source = this.props.source;
         }
+        
+        source.forEach((car) => {
+            if (car.make.toLowerCase().indexOf( searchValue.toLowerCase() ) > -1) {
+                foundArray.push(car);
+            }
+        });
+
+        this.setState({
+            filteredCars: foundArray,
+            searchValue: searchValue
+        });
     }
 
 
@@ -52,7 +74,7 @@ export class CarlistComponent extends Component {
         return (
             <React.Fragment>
             <form>
-                <input placeholder="Search for a car..." name="search_bar" value={ this.state.searchValue } onChange={ this.filterCars }  className="mb-2"/>
+                <input autocomplete="off" placeholder="Search for a car..." name="search_bar" value={ this.state.searchValue } onChange={ this.filterCars }  className="mb-2"/>
             </form>
 
             <ul className="list-group" >
