@@ -49,11 +49,10 @@ export class CarlistComponent extends Component {
     filterCarsRefactored = (event) => {
         let searchValue = event.target.value;
         let foundArray = [];
-
-        if (searchValue === '') {
-            source = [];
-        } else {
-            let source = this.props.source;
+        let source = [];
+        
+        if (searchValue !== '') {
+            source = this.props.source;
         }
         
         source.forEach((car) => {
